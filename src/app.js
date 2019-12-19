@@ -1,25 +1,44 @@
 const express = require("express");
 const app = express();
 
-// app.use((req,res)=>{
+const routerName = require('./routerName')
+const routerSku = require('./routerSku')
+
+app.use('/name',routerName)
+app.use('/sku',routerSku)
+
+// //响应所有方式
+// app.all('/demo',(req,res)=>{
 //     res.json({
-//         name:'张三'
+//         name:'123',
+//         method:req.method
 //     })
 // })
 
-app.get('/name/:age',(req,res)=>{
-    let {age} = req.params;
-    res.json({
-        name:'tom',
-        age:age
-    })
-})
-app.get('/name',(req,res)=>{
-    res.send('get message')
-})
-app.post('/name',(req,res)=>{
-    res.send('post message')
-})
+// //响应所有path
+// app.all('/*',(req,res)=>{
+//     res.json({
+//         name:'123',
+//         method:req.method,
+//         path:req.path
+//     })
+// })
+
+// // 使用use
+// app.use((req,res)=>{
+//     res.json({
+//         name:'123',
+//         method:req.method,
+//         path:req.path
+//     })
+// })
+// app.use('/init',(req,res)=>{
+//     res.json({
+//         name:'456',
+//         method:req.method,
+//         path:req.path
+//     })
+// })
 
 app.listen(3000,()=>{
     console.log('server启动成功')
